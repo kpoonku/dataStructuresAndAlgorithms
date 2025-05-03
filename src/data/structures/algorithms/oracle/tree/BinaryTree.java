@@ -5,11 +5,19 @@ import java.util.List;
 
 public class BinaryTree {
     public static Node<Integer> buildBinaryTree(List<String> list, int[] index) {
-        if (index[0] >= list.size()) return null;  // Check if the iterator has a next element
-        String val = list.get(index[0]++);
+        // Base case: if index is out of bounds, return null
+        if (index[0] >= list.size()) return null;
+
+        String val = list.get(index[0]++);  // Read and move index forward
+
+        // If current value is "x", this is a null node
         if (val.equals("x")) return null;
+
+        // Recursively build left and right subtrees
         Node<Integer> left = buildBinaryTree(list, index);
         Node<Integer> right = buildBinaryTree(list, index);
+
+        // Create the node with parsed integer value and children
         return new Node<>(Integer.parseInt(val), left, right);
     }
 
@@ -51,7 +59,9 @@ public class BinaryTree {
     }
 
     public static void main(String[] args) {
-        Node<Integer> root = buildBinaryTree(Arrays.asList("1", "2", "3", "x", "x", "4", "x", "x", "5", "6", "7", "x", "x", "8", "x", "x", "9", "10"), new int[]{0});
+        Node<Integer> root = buildBinaryTree(Arrays.asList("1", "2", "3", "x",
+                "x", "4", "x", "x", "5", "6", "7", "x", "x", "8",
+                "x", "x", "9", "10"), new int[]{0});
         inOrderTraversal(root, "   ");
         System.out.println("Inorder");
         preOrderTraversal(root);

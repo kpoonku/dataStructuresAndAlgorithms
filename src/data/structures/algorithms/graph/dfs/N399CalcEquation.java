@@ -8,7 +8,9 @@ public class N399CalcEquation {
         N399CalcEquation sol = new N399CalcEquation();
         List<List<String>> equations = Arrays.asList(Arrays.asList("a", "b"), Arrays.asList("b", "c"));
         double[] values = {2.0, 3.0};
-        List<List<String>> queries = Arrays.asList(Arrays.asList("a", "c"), Arrays.asList("b", "a"), Arrays.asList("a", "e"), Arrays.asList("a", "a"), Arrays.asList("x", "x"));
+        List<List<String>> queries = Arrays.asList(Arrays.asList("a", "c"),
+                Arrays.asList("b", "a"), Arrays.asList("a", "e"),
+                Arrays.asList("a", "a"), Arrays.asList("x", "x"));
 
         System.out.println(Arrays.toString(sol.calcEquation(equations, values, queries)));
         // Output: [6.0, 0.5, -1.0, 1.0, -1.0]

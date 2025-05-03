@@ -3,28 +3,42 @@ package data.structures.algorithms.dp.onedimension;
 public class N790DominoTromino {
     public static int numTilings(int n) {
         int MOD = 1_000_000_007;
-
         if (n == 1) return 1;
         if (n == 2) return 2;
         if (n == 3) return 5;
-
         int[] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
         dp[2] = 2;
-
         for (int i = 3; i <= n; i++) {
             dp[i] = (2 * dp[i - 1] + dp[i - 3]) % MOD;
         }
-
         return dp[n];
     }
-
     public static void main(String[] args) {
         int n = 4;
         System.out.println("Num Tilings for n - " + n + " is " + numTilings(n));
     }
 }
+/*
+You have two types of tiles: a 2 x 1 domino shape and a tromino shape. You may rotate these shapes.
+Given an integer n, return the number of ways to tile an 2 x n board. Since the answer may be very large,
+return it modulo 109 + 7.
+In a tiling, every square must be covered by a tile. Two tilings are different if and only
+if there are two 4-directionally adjacent cells on the board such that exactly one of the tilings has
+both squares occupied by a tile.
+
+Example 1:
+Input: n = 3
+Output: 5
+Explanation: The five different ways are show above.
+
+Example 2:
+Input: n = 1
+Output: 1
+Constraints:
+1 <= n <= 1000
+ */
 /*
 Awesome! Let's walk through **how `dp[0]` is used** in calculating something like
 `dp[3]` or `dp[4]` — and **why it's so important** in your dynamic programming (DP) solution. 🧠📐
@@ -91,135 +105,92 @@ So it contributes:
 | `dp[3] = 2 * dp[2] + dp[0]` | Covers all combinations — including the case where a
 tromino is used first, and then nothing is left. |
 | `dp[4] = 2 * dp[3] + dp[1]` | Reuses previously computed answers efficiently |
-
 ---
-
 Want to go step-by-step for `dp[4] = 11` too, showing what each part represents?
  */
 /*
 Great! Let’s break this one down **step-by-step**, nice and easy, for your beginner brain 🧠💡
-
 ---
-
 ## 🤖 Problem Summary
-
 You have a **robot** on a **grid** of size `m × n`.
-
 - It **starts** at the top-left (0, 0)
 - It wants to reach the **bottom-right** (m - 1, n - 1)
 - It can only move:
   - 👉 **Right**
   - 👇 **Down**
-
 🟦🟦🟦🟦🟦🟦🟦
 🟦🟦🟦🟦🟦🟦🟦
 🟦🟦🟦🟦🟦🟦🟦
-
 ---
-
 ## 🎯 Your Goal:
 > Count **how many different paths** the robot can take from top-left to bottom-right.
-
 ---
-
 ## 🔍 Example:
 ### For `m = 3`, `n = 7`:
 ```
 Grid = 3 rows, 7 columns
 ```
 ✅ Output: `28`
-
 ---
-
 ## 🧠 How to Think About It (Dynamic Programming style)
-
 Let’s say:
-
 ```
 dp[i][j] = number of unique paths to cell (i, j)
 ```
-
 Now, how can the robot reach `(i, j)`?
-
 🟢 From the **top cell** → `(i-1, j)`
 🟢 From the **left cell** → `(i, j-1)`
-
 So we can say:
-
 ```java
 dp[i][j] = dp[i-1][j] + dp[i][j-1]
 ```
-
 ### Base case:
 - First row (`i = 0`) → only 1 way (keep going right)
 - First column (`j = 0`) → only 1 way (keep going down)
-
 ---
-
 ## ✅ Java Code (Beginner-Friendly Version)
-
 ```java
 public int uniquePaths(int m, int n) {
     int[][] dp = new int[m][n];
-
     // Fill the first row and column with 1s
     for (int i = 0; i < m; i++) dp[i][0] = 1;
     for (int j = 0; j < n; j++) dp[0][j] = 1;
-
     // Fill the rest using dp[i][j] = top + left
     for (int i = 1; i < m; i++) {
         for (int j = 1; j < n; j++) {
             dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
         }
     }
-
     return dp[m - 1][n - 1];
 }
 ```
-
 ---
-
 ## 🎨 Visual Explanation for `m = 3`, `n = 2`
-
 Here’s the grid with ways to reach each square:
-
 ```
 [1][1]
 [1][2]
 [1][3]
 ```
-
 Explanation:
 - First column = always 1
 - Second column = sum of top + left
-
 So at bottom-right: `3` ways!
-
 ---
-
 ## 🔢 Math Shortcut (Combinations)
-
 There’s also a mathematical trick:
-
 - To go from top-left to bottom-right, robot must make:
   - `m - 1` **downs**
   - `n - 1` **rights**
-
 So total steps = `(m + n - 2)`
 Choose **where to place rights** → choose `(n - 1)` steps from total:
-
 ```java
 // Using combinations: C(m + n - 2, n - 1)
 ```
-
 This is faster for big grids!
-
 Let me know if you want that version too.
-
 ---
-
 ### 🎁 Summary
-
 | Concept        | Idea                                                                 |
 |----------------|----------------------------------------------------------------------|
 | Problem        | Count paths from (0,0) to (m-1,n-1) with only right/down moves       |
@@ -227,8 +198,6 @@ Let me know if you want that version too.
 | Base Case      | First row and first column = 1                                        |
 | Time Complexity| O(m × n)                                                              |
 | Optional       | Use combinations for math shortcut: C(m+n−2, m−1) or C(m+n−2, n−1)    |
-
 ---
-
 Want to try solving for `m = 5, n = 5` together? Or see the math shortcut version in code? 😄
- */
+*/

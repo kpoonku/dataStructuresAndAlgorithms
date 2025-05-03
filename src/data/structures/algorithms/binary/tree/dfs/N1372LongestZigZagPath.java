@@ -9,11 +9,15 @@ public class N1372LongestZigZagPath {
     private static int maxZigZag = 0;
 
     public static void main(String[] args) {
-        Node<Integer> root = BinaryTree.buildBinaryTree(Arrays.asList("1", "x", "1", "1", "1", "x", "x", "1", "1", "x", "1", "x", "x", "x", "1"), new int[]{0});
+        Node<Integer> root = BinaryTree.buildBinaryTree
+                (Arrays.asList("1", "x", "2", "3", "4", "x", "x", "5",
+                        "6", "x", "7", "x", "x", "x", "8"), new int[]{0});
         BinaryTree.inOrderTraversal(root, " ");
         int maxValue = longestZigZag(root);
         System.out.println("Max Value: " + maxValue);
-        root = BinaryTree.buildBinaryTree(Arrays.asList("1", "1", "1", "x", "1", "x", "x", "1", "1", "x", "1", "1", "1"), new int[]{0});
+        root = BinaryTree.buildBinaryTree
+                (Arrays.asList("1", "1", "1", "x", "1", "x", "x", "1",
+                        "1", "x", "1", "1", "1"), new int[]{0});
         BinaryTree.inOrderTraversal(root, " ");
         maxValue = longestZigZag(root);
         System.out.println("Max Value: " + maxValue);
@@ -45,7 +49,8 @@ You are given the root of a binary tree.
 A ZigZag path for a binary tree is defined as follow:
 
 Choose any node in the binary tree and a direction (right or left).
-If the current direction is right, move to the right child of the current node; otherwise, move to the left child.
+If the current direction is right, move to the right child of the current node;
+otherwise, move to the left child.
 Change the direction from right to left or from left to right.
 Repeat the second and third steps until you can't move in the tree.
 Zigzag length is defined as the number of nodes visited - 1. (A single node has a length of 0).
@@ -68,8 +73,7 @@ Constraints:
 
 The number of nodes in the tree is in the range [1, 5 * 104].
 1 <= Node.val <= 100
- */
-
+*/
 /*
 1. Understand the Problem Conceptually
 What is a ZigZag path?
@@ -77,14 +81,16 @@ Imagine you're walking through a tree, starting from the root node.
 
 From each node, you have two choices: move to the left child or move to the right child.
 
-A ZigZag path is defined as a path where you alternate directions (i.e., go left and then right, or right and then left).
+A ZigZag path is defined as a path where you alternate directions (i.e., go left and then right,
+or right and then left).
 
 The key part is alternating directions at each step.
 
 Path Definition:
 You can choose any node in the tree and start moving either left or right.
 
-The path stops if you reach a leaf node, or if there are no more children to move to in the direction you’re supposed to go.
+The path stops if you reach a leaf node, or if there are no more children to move to in the direction
+you’re supposed to go.
 
 The length of the path is the number of nodes in the path minus 1.
 
@@ -106,35 +112,35 @@ How to keep track of the longest ZigZag path we encounter
 3. Key Concepts to Implement the Solution
 1. Depth-First Search (DFS):
 We need to explore every possible path in the tree from each node.
-
-DFS is a good fit because it helps us explore paths down the tree and keep track of the current state (whether we're moving left or right).
+DFS is a good fit because it helps us explore paths down the tree and keep track of the current state
+(whether we're moving left or right).
 
 2. Track ZigZag Length:
 For each node, we will track two potential ZigZag paths:
-
 One where we move left (then right, then left, etc.).
-
 One where we move right (then left, then right, etc.).
 
 3. Recursive Function:
 We will use recursion to keep track of how long we can go in each direction (left or right) from any node.
-
 We will update the longest ZigZag path each time we explore a node.
 
-
-To help the human brain understand and create the logic for solving the **longest ZigZag path in a binary tree** problem, it is essential to break the problem down step-by-step in a way that is digestible. Let’s do this with the following approach:
+To help the human brain understand and create the logic for solving the **longest ZigZag path in a binary
+tree** problem, it is essential to break the problem down step-by-step in a way that is digestible.
+Let’s do this with the following approach:
 
 ### 1. **Understand the Problem Conceptually**
 
 #### What is a ZigZag path?
 - Imagine you're walking through a tree, starting from the root node.
 - From each node, you have two choices: move to the left child or move to the right child.
-- A ZigZag path is defined as a path where you **alternate directions** (i.e., go left and then right, or right and then left).
+- A ZigZag path is defined as a path where you **alternate directions** (i.e., go left and then right,
+or right and then left).
 - The key part is **alternating** directions at each step.
 
 #### Path Definition:
 - You can choose any node in the tree and start moving either left or right.
-- The path stops if you reach a leaf node, or if there are no more children to move to in the direction you’re supposed to go.
+- The path stops if you reach a leaf node, or if there are no more children to move to in the direction
+you’re supposed to go.
 - The length of the path is the number of nodes in the path minus 1.
 
 ---
@@ -168,7 +174,8 @@ We need to figure out:
 
 #### 1. **Depth-First Search (DFS)**:
 - We need to explore every possible path in the tree from each node.
-- DFS is a good fit because it helps us explore paths down the tree and keep track of the current state (whether we're moving left or right).
+- DFS is a good fit because it helps us explore paths down the tree and keep track of the current state
+(whether we're moving left or right).
 
 #### 2. **Track ZigZag Length**:
 - For each node, we will track two potential ZigZag paths:
@@ -207,13 +214,15 @@ We need to figure out:
 You are standing at the root of the tree. You can go left or right. Choose one direction (left or right).
 
 #### **Move to a Child**:
-Once you move to a child, you change the direction. If you started by going **left**, you now go **right**, and if you started by going **right**, you go **left**.
+Once you move to a child, you change the direction. If you started by going **left**, you now go **right**,
+and if you started by going **right**, you go **left**.
 
 #### **Count the Steps**:
 Every time you move to a new node, count how many steps you’ve taken so far in your current direction.
 
 #### **When You Can't Move, Stop**:
-If you can't move further (either because you reached the end of the tree or there are no children in the direction you're going), stop and check how long your ZigZag path was.
+If you can't move further (either because you reached the end of the tree or there are no children in the
+direction you're going), stop and check how long your ZigZag path was.
 
 #### **Remember the Longest Path**:
 If the current ZigZag path is the longest you’ve seen, remember it.
@@ -230,7 +239,8 @@ Imagine you’re playing a game where you’re allowed to walk through a forest,
 - The goal is to walk as far as you can without breaking the direction rule.
 - After exploring, you measure the longest path you walked.
 
-This game analogy helps in visualizing the problem and understanding how alternating between left and right while counting the steps forms the ZigZag pattern.
+This game analogy helps in visualizing the problem and understanding how alternating between left and right
+while counting the steps forms the ZigZag pattern.
 
 ---
 
@@ -265,7 +275,10 @@ function longestZigZag(root):
 - **ZigZag path**: It’s a path where you alternate directions.
 - **DFS**: We recursively explore the tree, alternating between left and right.
 - **Max Path Length**: Keep track of the longest ZigZag path as you explore.
-- **Recursion helps**: DFS works well here because it allows you to explore one path all the way down before trying another.
+- **Recursion helps**: DFS works well here because it allows you to explore one path all the way down before
+trying another.
 
-The brain needs to focus on the **alternating direction rule** and how you can explore every node while switching directions, and then comparing the length of every possible ZigZag path. By following this step-by-step approach, you will be able to intuitively understand the problem and solution.
+The brain needs to focus on the **alternating direction rule** and how you can explore every node while
+switching directions, and then comparing the length of every possible ZigZag path. By following this
+step-by-step approach, you will be able to intuitively understand the problem and solution.
  */

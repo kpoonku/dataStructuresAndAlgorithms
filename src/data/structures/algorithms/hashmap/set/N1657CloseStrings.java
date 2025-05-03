@@ -18,8 +18,8 @@ public class N1657CloseStrings {
         if (!freqMap2.keySet().equals(freqMap1.keySet())) {
             return false;
         }
-        Set<Integer> freq1 = new HashSet<>(freqMap1.values());
-        Set<Integer> freq2 = new HashSet<>(freqMap2.values());
+        List<Integer> freq1 = new ArrayList<>(freqMap1.values());
+        List<Integer> freq2 = new ArrayList<>(freqMap2.values());
         return freq2.equals(freq1);
     }
 
@@ -102,37 +102,49 @@ Swapping any two characters (like switching positions of two characters).
 
 Transforming one character into another, but only if both characters are present in the string.
 
-For example, if you have the string "abc", you can swap the characters to form "bac", or you can transform one character into another as long as they exist in both strings. So, you could transform 'a' into 'b' if both 'a' and 'b' are present in both strings.
+For example, if you have the string "abc", you can swap the characters to form "bac", or you can transform one character
+into another as long as they exist in both strings. So, you could transform 'a' into 'b' if both 'a' and 'b' are present in
+both strings.
 
 What the Code Does (Step-by-Step)
-Check the Length: First, we check if the two strings have the same length. If the strings are of different lengths, they can't possibly be close, so we return false.
+Check the Length: First, we check if the two strings have the same length. If the strings are of different lengths, they can't
+possibly be close, so we return false.
 
 Example: "abc" and "abcd" can never be close because one has 3 characters and the other has 4.
 
-Convert Strings to Arrays: Both strings are converted into arrays of characters. For example, "abc" would become the array ['a', 'b', 'c'].
+Convert Strings to Arrays: Both strings are converted into arrays of characters. For example, "abc" would become the array
+['a', 'b', 'c'].
 
 Sort the Arrays: We sort both arrays. This helps us see if the strings contain the same characters in any order.
 
 Example: For the strings "abc" and "bac", sorting both gives ['a', 'b', 'c'] in both cases. So, they look the same after sorting.
 
-Compare the Arrays: Finally, we compare the sorted arrays. If they match exactly (i.e., they have the same characters in the same order after sorting), we return true. This means the two strings are "close", meaning they can be turned into one another by sorting, swapping, or transforming characters.
+Compare the Arrays: Finally, we compare the sorted arrays. If they match exactly (i.e., they have the same characters in the
+same order after sorting), we return true. This means the two strings are "close", meaning they can be turned into one another
+by sorting, swapping, or transforming characters.
 
 Why It Might Not Work for the Original Problem
-The problem you're dealing with is more complex because it involves not just sorting and comparing the characters, but also allowing transformations between characters (like changing 'a' to 'b' if both 'a' and 'b' appear in both strings).
+The problem you're dealing with is more complex because it involves not just sorting and comparing the characters, but also
+allowing transformations between characters (like changing 'a' to 'b' if both 'a' and 'b' appear in both strings).
 
 For example:
 
-If string 1 has 'a' and string 2 has 'b', but both strings have a way to swap or transform those characters, they are considered close.
+If string 1 has 'a' and string 2 has 'b', but both strings have a way to swap or transform those characters, they are
+considered close.
 
-However, sorting alone doesn't account for this transformation capability. It just checks if the characters are the same after sorting, but it doesn't handle the case where you need to swap or change characters.
+However, sorting alone doesn't account for this transformation capability. It just checks if the characters are the same after
+sorting, but it doesn't handle the case where you need to swap or change characters.
 
 The Problem with the Approach
-The code you provided only works for a simpler problem where we just want to check if two strings are anagrams (meaning they contain the same characters, just in different orders). But it doesn't fully solve the original problem because it doesn’t check whether you can swap characters or transform one character into another.
+The code you provided only works for a simpler problem where we just want to check if two strings are anagrams (meaning they
+contain the same characters, just in different orders). But it doesn't fully solve the original problem because it doesn’t
+check whether you can swap characters or transform one character into another.
 
 The Core Concept (for Beginners):
 Anagram Check: The code essentially checks if both strings have the same characters in any order.
 
-Transformation and Swapping: The original problem allows for transforming characters and swapping them. You need to ensure that you can swap or transform characters (not just check if they exist in both strings).
+Transformation and Swapping: The original problem allows for transforming characters and swapping them. You need to ensure
+that you can swap or transform characters (not just check if they exist in both strings).
 
  Explanation:
 Length Check: If the two strings don't have the same length,

@@ -6,15 +6,14 @@ import data.structures.algorithms.oracle.tree.Node;
 import java.util.Arrays;
 
 public class N236LeastCommonAncestor {
-
-    public static Node<Integer> lowestCommonAncestor(Node<Integer> root, int p, int q) {
+    public static Node<Integer> lowestCommonAncestor
+            (Node<Integer> root, int p, int q) {
         if (root == null) {
             return root;
         }
         if (root.value == p || root.value == q) {
             return root;
         }
-
         Node<Integer> left = lowestCommonAncestor(root.left, p, q);
         Node<Integer> right = lowestCommonAncestor(root.right, p, q);
 
@@ -25,7 +24,8 @@ public class N236LeastCommonAncestor {
     }
 
     public static void main(String[] args) {
-        Node<Integer> root = BinaryTree.buildBinaryTree(Arrays.asList("5", "3", "x", "2", "1", "x", "x"), new int[]{0});
+        Node<Integer> root = BinaryTree.buildBinaryTree
+                (Arrays.asList("5", "3", "x", "2", "1", "x", "x"), new int[]{0});
         BinaryTree.inOrderTraversal(root, "  ");
         System.out.println();
         System.out.println("LCA of BST : " + lowestCommonAncestor(root, 2, 3).value);
@@ -34,16 +34,21 @@ public class N236LeastCommonAncestor {
 /*
 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
 
-According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined
+between two nodes p and q as the lowest node in T that has both p and q as descendants
+(where we allow a node to be a descendant of itself).”
 
 Example 1:
 Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
 Output: 3
 Explanation: The LCA of nodes 5 and 1 is 3.
+
 Example 2:
 Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
 Output: 5
-Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
+Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself
+according to the LCA definition.
+
 Example 3:
 Input: root = [1,2], p = 1, q = 2
 Output: 1
@@ -54,30 +59,41 @@ All Node.val are unique.
 p != q
 p and q will exist in the tree.
 */
-
 /*
-Let's break down the logic to help you understand the concept of finding the **Lowest Common Ancestor (LCA)** in a binary tree, and how we can create the function step by step in Java. We'll explain it in a way that makes it easier for you to follow and implement.
+Let's break down the logic to help you understand the concept of finding the
+**Lowest Common Ancestor (LCA)** in a binary tree, and how we can create the function
+step by step in Java. We'll explain it in a way that makes it easier for you to follow and
+implement.
 
 ### **What is the Lowest Common Ancestor (LCA)?**
-- The **Lowest Common Ancestor** of two nodes in a binary tree is the lowest node in the tree that has both of the given nodes as descendants.
-- In other words, it's the most recent common node that both nodes share as you travel upward in the tree from both nodes.
+- The **Lowest Common Ancestor** of two nodes in a binary tree is the lowest node in the tree
+that has both of the given nodes as descendants.
+- In other words, it's the most recent common node that both nodes share as you travel upward
+in the tree from both nodes.
 
 ### **How can we find the LCA?**
-To find the LCA, we can use the **Recursive approach**. The idea is to traverse the tree and check if the nodes we are looking for are in the current node's left or right subtree.
+To find the LCA, we can use the **Recursive approach**. The idea is to traverse the tree and
+check if the nodes we are looking for are in the current node's left or right subtree.
 
 ### **Steps for the Recursive Approach:**
 
 1. **Base Case**:
-   - If the current node is **null**, it means we've reached a leaf node (or the tree is empty). In this case, return `null` because there is no LCA here.
-   - If the current node is **equal to either `p` or `q`**, it means we've found one of the nodes. In this case, return the current node because it's part of the path toward the LCA.
+   - If the current node is **null**, it means we've reached a leaf node (or the tree is empty).
+   In this case, return `null` because there is no LCA here.
+   - If the current node is **equal to either `p` or `q`**, it means we've found one of the nodes.
+   In this case, return the current node because it's part of the path toward the LCA.
 
 2. **Recursive Exploration**:
    - Call the function **recursively** on the **left subtree** and **right subtree**.
-   - We do this because we want to find `p` and `q` somewhere in the tree. We need to check both subtrees to figure out where they are.
+   - We do this because we want to find `p` and `q` somewhere in the tree. We need to check both
+   subtrees to figure out where they are.
 
 3. **Determine the LCA**:
-   - If both left and right subtrees return a non-null value, that means `p` and `q` are located in different subtrees. So, the current node must be the **LCA** because it's the first node where their paths diverge.
-   - If only one of the subtrees returns a non-null value, it means both `p` and `q` are located in the same subtree. So, we return the non-null value because that will be the ancestor.
+   - If both left and right subtrees return a non-null value, that means `p` and `q` are located
+   in different subtrees. So, the current node must be the **LCA** because it's the first node
+   where their paths diverge.
+   - If only one of the subtrees returns a non-null value, it means both `p` and `q` are located
+   in the same subtree. So, we return the non-null value because that will be the ancestor.
 
 ### **Example Walkthrough**:
 Let's walk through the process using an example:
@@ -96,12 +112,15 @@ Consider the binary tree:
 
 We want to find the LCA of nodes `5` and `1`.
 
-1. Start at the root node, `3`. Check if `3` is equal to `5` or `1`. It's not, so continue the search.
+1. Start at the root node, `3`. Check if `3` is equal to `5` or `1`. It's not, so continue the
+search.
 2. Recursively search the left subtree of `3` (node `5`):
    - Check if `5` is `p` or `q`. It matches `5`, so return `5` as a potential LCA.
 3. Now, recursively search the right subtree of `3` (node `1`):
    - Check if `1` is `p` or `q`. It matches `1`, so return `1` as a potential LCA.
-4. Now both left and right subtrees of `3` have returned non-null values (`5` from the left and `1` from the right). This means `5` and `1` are in different subtrees of `3`, so `3` is the **LCA**.
+4. Now both left and right subtrees of `3` have returned non-null values (`5` from the left and
+`1` from the right). This means `5` and `1` are in different subtrees of `3`, so `3` is the
+**LCA**.
 
 ### **Code Implementation:**
 
@@ -170,14 +189,18 @@ public class BinaryTree {
 
 ### **Explanation of Code:**
 
-1. **TreeNode class**: Represents each node in the binary tree. It contains a value (`val`), and pointers to the left and right child nodes.
+1. **TreeNode class**: Represents each node in the binary tree. It contains a value (`val`),
+and pointers to the left and right child nodes.
 
 2. **lowestCommonAncestor method**:
    - If the `root` is `null`, there is no ancestor, so we return `null`.
-   - If the `root` matches either `p` or `q`, we return the root node because we've found one of the target nodes.
+   - If the `root` matches either `p` or `q`, we return the root node because we've found one
+   of the target nodes.
    - We recursively call `lowestCommonAncestor` on the left and right subtrees.
-   - If both left and right subtrees return non-null values, the current node is the **LCA**, so we return the root node.
-   - If only one subtree returns a non-null value, return that value because it is the common ancestor.
+   - If both left and right subtrees return non-null values, the current node is the **LCA**,
+   so we return the root node.
+   - If only one subtree returns a non-null value, return that value because it is the common
+   ancestor.
 
 3. **main method**:
    - Creates a binary tree manually by linking nodes.
@@ -185,15 +208,21 @@ public class BinaryTree {
    - Prints the LCA value.
 
 ### **Time Complexity**:
-- The time complexity is **O(N)**, where **N** is the number of nodes in the tree because we are visiting each node exactly once.
+- The time complexity is **O(N)**, where **N** is the number of nodes in the tree because we
+are visiting each node exactly once.
 
 ### **Space Complexity**:
-- The space complexity is **O(H)**, where **H** is the height of the tree due to the recursive stack.
+- The space complexity is **O(H)**, where **H** is the height of the tree due to the recursive
+stack.
 
 ### **Summary**:
-- This approach uses recursion to efficiently search for the lowest common ancestor by checking both subtrees for the given nodes.
-- The function works by recursively dividing the tree into smaller subtrees until the nodes are found.
-- The algorithm has a time complexity of **O(N)** and space complexity of **O(H)**, which is efficient for large trees.
+- This approach uses recursion to efficiently search for the lowest common ancestor by checking
+both subtrees for the given nodes.
+- The function works by recursively dividing the tree into smaller subtrees until the nodes are
+found.
+- The algorithm has a time complexity of **O(N)** and space complexity of **O(H)**, which is
+efficient for large trees.
 
-By understanding this process, you can now implement the function to find the Lowest Common Ancestor in a binary tree.
+By understanding this process, you can now implement the function to find the Lowest Common
+Ancestor in a binary tree.
  */

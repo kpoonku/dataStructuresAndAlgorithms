@@ -24,7 +24,9 @@ public class DecodeString {
             } else if(c == ']') {
                int repeatNumber = numberStack.pop();
                 StringBuilder repeatString = new StringBuilder();
-                repeatString.append(String.valueOf(currentString).repeat(Math.max(0, repeatNumber)));
+                repeatString.append(
+                        String.valueOf(currentString)
+                        .repeat(Math.max(0, repeatNumber)));
                 System.out.println("repeatString : " + repeatString);
                 currentString = stringStack.pop().append(repeatString);
             } else {

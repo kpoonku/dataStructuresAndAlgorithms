@@ -1,27 +1,30 @@
 package data.structures.algorithms.binary.tree.dfs;
 
+import data.structures.algorithms.oracle.tree.BinaryTree;
+import data.structures.algorithms.oracle.tree.Node;
+
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class N437PathSumIII {
     // HashMap to store the frequency of prefix sums (sums of paths so far)
-    private final HashMap<Long, Integer> prefixSumCount = new HashMap<>();
-    private int result = 0;
+    private static final HashMap<Long, Integer> prefixSumCount = new HashMap<>();
+    private static int result = 0;
 
     // The main function that will start DFS traversal
-    public int pathSum(TreeNode root, int targetSum) {
+    public static int pathSum(Node<Integer> root, int targetSum) {
         prefixSumCount.put(0L, 1);  // To handle the case where a path itself is equal to targetSum
         dfs(root, 0, targetSum);  // Start DFS from the root
         return result;
     }
 
     // DFS helper function
-    private void dfs(TreeNode node, long currentSum, int targetSum) {
+    private static void dfs(Node<Integer> node, long currentSum, int targetSum) {
         if (node == null) {
             return;
         }
-
         // Update the running sum
-        currentSum += node.val;
+        currentSum += node.value;
 
         // Check if we've seen (currentSum - targetSum) before
         // If so, that means there are some paths that sum to targetSum
@@ -40,14 +43,14 @@ public class N437PathSumIII {
         prefixSumCount.put(currentSum, prefixSumCount.get(currentSum) - 1);
     }
 
-    // TreeNode definition
-    public static class TreeNode {
-        int val;
-        TreeNode left, right;
-
-        TreeNode(int x) {
-            val = x;
-        }
+    public static void main(String[] args) {
+        Node<Integer> root = BinaryTree.buildBinaryTree
+                (Arrays.asList("1", "2", "3", "x", "x", "4", "x", "x", "5", "6", "7",
+                        "x", "x", "8", "x", "x", "9", "10"), new int[]{0});
+        BinaryTree.inOrderTraversal(root, "   ");
+        System.out.println("Root : " + root.value);
+        System.out.println();
+        System.out.println("Path Sum of BST : " + pathSum(root, 12));
     }
 }
 /*
@@ -74,12 +77,15 @@ The number of nodes in the tree is in the range [0, 1000].
 Sure! Let's break it down step by step so it's easier to understand:
 
 ### Problem Explanation:
-We are given a **binary tree**, and we need to find the **number of paths** that add up to a given **target sum**. A path is defined as going from a node down to its descendants, and the sum of the nodes along that path should equal the target.
+We are given a **binary tree**, and we need to find the **number of paths** that add up to a given **target
+sum**. A path is defined as going from a node down to its descendants, and the sum of the nodes along that path
+should equal the target.
 
 ### Key Points to Understand:
 
 1. **What is a binary tree?**
-   - A binary tree is a type of tree structure where each node has at most two children: a **left child** and a **right child**. For example, if a tree looks like this:
+   - A binary tree is a type of tree structure where each node has at most two children: a **left child** and
+   a **right child**. For example, if a tree looks like this:
      ```
          10
         /  \
@@ -91,8 +97,10 @@ We are given a **binary tree**, and we need to find the **number of paths** that
      - Each of these children may have their own children, like `3`, `2`, `11` under `5` and `-3`.
 
 2. **What are paths?**
-   - A **path** is a sequence of nodes where you start at one node and go down to its children (left or right), and you keep following until you reach a leaf (a node with no children).
-   - Example paths: From node `10` → `5` → `3` (This is a valid path because we followed a parent-child relationship).
+   - A **path** is a sequence of nodes where you start at one node and go down to its children (left or right),
+   and you keep following until you reach a leaf (a node with no children).
+   - Example paths: From node `10` → `5` → `3` (This is a valid path because we followed a parent-child
+   relationship).
    - Paths don't need to start from the root, but they must go **downwards** (to the left or right child).
 
 3. **How do we find paths that sum to the target?**
@@ -101,22 +109,29 @@ We are given a **binary tree**, and we need to find the **number of paths** that
 ### The Approach We Use:
 
 #### **Depth-First Search (DFS)**:
-We will use a **DFS** approach to explore all the paths in the tree, starting from the root node. During this exploration, we keep track of the sum of the node values along the path we're currently on.
+We will use a **DFS** approach to explore all the paths in the tree, starting from the root node. During this
+exploration, we keep track of the sum of the node values along the path we're currently on.
 
 #### **Prefix Sum Idea**:
-While going down a path, we can store the sum of all node values from the root to the current node. If, at any point, the difference between the current sum and `targetSum` matches a sum we've encountered before, we know we've found a valid path.
+While going down a path, we can store the sum of all node values from the root to the current node. If, at any
+point, the difference between the current sum and `targetSum` matches a sum we've encountered before, we know
+we've found a valid path.
 
 ### The Solution, Step by Step:
 
 1. **Starting from the root**, we begin to explore the tree recursively (DFS).
 2. As we go down, we maintain a **running total** of the sum of all nodes on the current path (`currentSum`).
-3. At each node, we check if there is a path from **any previous node** (in the path so far) that sums up to `targetSum`. We do this by checking if `currentSum - targetSum` has been encountered before.
-4. We **record the count** of every cumulative sum (`currentSum`) in a **hash map** (or dictionary), so we can easily check if we’ve encountered that sum before.
-5. Once we reach a leaf node (a node with no children), we backtrack, removing the current node’s sum from the map.
+3. At each node, we check if there is a path from **any previous node** (in the path so far) that sums up to
+`targetSum`. We do this by checking if `currentSum - targetSum` has been encountered before.
+4. We **record the count** of every cumulative sum (`currentSum`) in a **hash map** (or dictionary), so we
+can easily check if we’ve encountered that sum before.
+5. Once we reach a leaf node (a node with no children), we backtrack, removing the current node’s sum from
+the map.
 
 ### Why Use a Hash Map?
 - The hash map helps us **remember** which sums we've seen in the past as we traverse the tree.
-- This makes the process **more efficient** because we don't have to recompute sums from the beginning every time we explore a new node.
+- This makes the process **more efficient** because we don't have to recompute sums from the beginning every
+time we explore a new node.
 
 ### Code Breakdown:
 

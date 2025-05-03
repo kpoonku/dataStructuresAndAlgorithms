@@ -8,11 +8,13 @@ public class DoublyLinkedList {
         if(integerList == null || integerList.isEmpty()) {
             return null;
         }
-        DoublyLinkedListNode<Integer> head = new DoublyLinkedListNode<>(integerList.get(0),null,null);
+        DoublyLinkedListNode<Integer> head = new DoublyLinkedListNode<>
+                (integerList.get(0),null,null);
         DoublyLinkedListNode<Integer> current = head;
 
         for(int i = 1; i < integerList.size(); i++) {
-            DoublyLinkedListNode<Integer> newNode = new DoublyLinkedListNode<>(integerList.get(i), null, null);
+            DoublyLinkedListNode<Integer> newNode = new DoublyLinkedListNode<>
+                    (integerList.get(i), null, null);
             newNode.prev = current;
             current.next = newNode;
             current = newNode;

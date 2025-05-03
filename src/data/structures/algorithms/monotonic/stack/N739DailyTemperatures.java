@@ -48,7 +48,8 @@ Constraints:
 30 <= temperatures[i] <= 100
  */
 /*
-Absolutely! Let's slow it down and explain this in a **super beginner-friendly** way — no fancy terms like "monotonic stack" (we’ll sneak that in later when it makes sense 😄).
+Absolutely! Let's slow it down and explain this in a **super beginner-friendly** way —
+no fancy terms like "monotonic stack" (we’ll sneak that in later when it makes sense 😄).
 ---
 ### 🎯 The Problem (In Simple Words):
 You are given a list of daily temperatures. For **each day**, you want to know:

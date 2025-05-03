@@ -28,7 +28,9 @@ public class CountConnectedComponentsInGraph {
         return connectedComponents;
     }
 
-    public void dfs(int node, Map<Integer, List<Integer>> graph, Set<Integer> visited) {
+    public void dfs(int node, Map<Integer,
+                            List<Integer>> graph,
+                    Set<Integer> visited) {
         visited.add(node);
         System.out.println("Node2 : "+ node);
         for(int neighbor : graph.get(node)) {

@@ -6,13 +6,14 @@ import java.util.Map;
 /*
 * A String can be formed using another string s by repeatedly
 * concatenating the anagrams of s any number of times.
-* Given a string input_str of length n, find out the length of the smallest string s that can be used to create input_str.
+* Given a string input_str of length n, find out the length of the
+* smallest string s that can be used to create input_str.
 
-Note that the string input_str onlyl consists of lowercase
+Note that the string input_str only consists of lowercase
 * english letters.
 
 input_str = "ababbaab";
-outpiut : One of the possible strings s can be "aabb",
+output : One of the possible strings s can be "aabb",
 * First append "abab" and then append "baab".
 Another possible string s can be "ab" append the anagrams of s
 * in the order : "ab", "ab", "ba" abd "ab".
@@ -78,16 +79,17 @@ public class InterviewQuestionSmallestString {
         // Test case
         System.out.println("15, 35 : " + gcd(15, 35));
         String inputStr = "ababbaab";
-        String result = "";//smallestString(inputStr);
-        //System.out.println("Output: " + result); // Expected output: "ab"
+        String result = "";
+        smallestString(inputStr);
+        System.out.println("Output: " + result + "\n\n\n"); // Expected output: "ab"
         inputStr = "ababba";
         result = smallestString(inputStr);
-        System.out.println("Output: " + result); // Expected output: "ab"
+        System.out.println("Output: " + result + "\n\n\n"); // Expected output: "ab"
         inputStr = "abcbcacab";
         result = smallestString(inputStr);
-        System.out.println("Output: " + result);
-        /*inputStr = "aabbbaaaabbb";
+        System.out.println("Output: " + result + "\n\n\n");
+        inputStr = "aabbbaaaabbb";
         result = smallestString(inputStr);
-        System.out.println("Output: " + result);*/
+        System.out.println("Output: " + result + "\n\n\n");
     }
 }

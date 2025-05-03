@@ -13,8 +13,6 @@ public class PriorityQueueExample {
         priorityQueue.add(3);
 
         System.out.println("Priority Queue: " + priorityQueue); // Output: Priority Queue: [1, 3, 10, 5]
-
-
         System.out.println("Removed element: " + priorityQueue.remove()); // Output: Removed element: 1
         System.out.println("Priority Queue: " + priorityQueue);
         System.out.println("Removed element: " + priorityQueue.remove()); // Output: Removed element: 3

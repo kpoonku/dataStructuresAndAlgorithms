@@ -6,9 +6,7 @@ public class N1137TribanocciSeries {
         sol.getTribonacciSequence(4);
         sol.getTribonacciSequence(25);
     }
-
     public int getTribonacciSequence(int n) {
-
         if (n == 0) {
             return 0;
         }
@@ -17,21 +15,18 @@ public class N1137TribanocciSeries {
         }
         int x = 0, y = 1, z = 1;
         int output = 0;
-
         for (int i = 3; i <= n; i++) {
-            System.out.println(i + "th round :  x = " + x + " , y = " + y + " , z = " + z);
+           // System.out.println(i + "th round :  x = " + x + " , y = " + y + " , z = " + z);
             output = x + y + z;
             x = y;
             y = z;
             z = output;
-            System.out.println("output : " + output);
+            System.out.print(" " + output + " ");
         }
-
-        System.out.println("Output: " + output);
+        System.out.println(" \n Output: " + output);
         return output;
     }
 }
-
 /*
 The Tribonacci sequence Tn is defined as follows:
 T0 = 0, T1 = 1, T2 = 1, and Tn+3 = Tn + Tn+1 + Tn+2 for n >= 0.

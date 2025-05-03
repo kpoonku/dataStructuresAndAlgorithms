@@ -1,6 +1,41 @@
 package data.structures.algorithms.oracle;
 
 public class InterleavingString {
+    public static boolean isInterleave(String s1, String s2, String s3) {
+        // If the lengths don't match, it's impossible to form s3
+        if (s1.length() + s2.length() != s3.length()) {
+            return false;
+        }
+
+        int m = s1.length();
+        int n = s2.length();
+
+        // Create a DP table to store the results of sub-problems
+        boolean[][] dp = new boolean[m + 1][n + 1];
+
+        // Initialize dp[0][0] as true because two empty strings can form an empty string
+        dp[0][0] = true;
+
+        // Fill the DP table
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                // If we are not at the first row and the current character of s1 matches the
+                // corresponding character in s3
+                if (i > 0 && s1.charAt(i - 1) == s3.charAt(i + j - 1)) {
+                    dp[i][j] = dp[i][j] || dp[i - 1][j];
+                }
+                // If we are not at the first column and the current character of s2 matches the
+                // corresponding character in s3
+                if (j > 0 && s2.charAt(j - 1) == s3.charAt(i + j - 1)) {
+                    dp[i][j] = dp[i][j] || dp[i][j - 1];
+                }
+            }
+        }
+
+        // The answer is in dp[m][n], where m and n are the lengths of s1 and s2 respectively
+        return dp[m][n];
+    }
+
     public static boolean isInterleavingString(String s1, String s2, String s3) {
         int s1l = s1.length();
         int s2l = s2.length();
@@ -15,16 +50,15 @@ public class InterleavingString {
                 break;
             }
             System.out.println("1 i - " + i + " j - " + j + " k - " + k);
-            if (i < s1l && s3.charAt(k) == s1.charAt(i)) {
+            if (s3.charAt(k) == s1.charAt(i)) {
                 System.out.println("s3.charAt(k) == s1.charAt(i) : " + s3.charAt(k) + " == " + s1.charAt(i));
                 i++;
-                k++;
             }
-            if (j < s2l && s3.charAt(k) == s2.charAt(j)) {
+            if (s3.charAt(k) == s2.charAt(j)) {
                 System.out.println("s3.charAt(k) == s1.charAt(j) : " + s3.charAt(k) + " == " + s2.charAt(j));
                 j++;
-                k++;
             }
+            k++;
         }
         System.out.println("1 i - " + i + " j - " + j + " k - " + k);
         System.out.println("s2.substring(j) " + s2.substring(j));
@@ -45,9 +79,9 @@ public class InterleavingString {
 
     public static void main(String[] args) {
         String s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbcac";
-        System.out.println("result : " + isInterleavingString(s1, s2, s3));
-        //s1 = "aabcc"; s2 = "dbbca"; s3 = "aadbbbaccc";
-        //System.out.println("result : " + isInterleavingString(s1, s2, s3));
+        System.out.println("result : " + isInterleave(s1, s2, s3));
+        s1 = "aabcc"; s2 = "dbbca"; s3 = "aadbbbcacc";
+        System.out.println("result : " + isInterleave(s1, s2, s3));
     }
 }
 
@@ -57,35 +91,50 @@ You said:
 Medium
 Topics
 Companies
-Given strings s1, s2, and s3, find whether s3 is formed by an interleaving of s1 and s2.
+Given strings s1, s2, and s3, find whether s3 is formed
+ by an interleaving of s1 and s2.
 
-An interleaving of two strings s and t is a configuration where s and t are divided into n and m substrings respectively, such that:
+An interleaving of two strings s and t is a configuration
+where s and t are divided into n and m substrings respectively,
+such that:
 
 s = s1 + s2 + ... + sn
 t = t1 + t2 + ... + tm
 |n - m| <= 1
-The interleaving is s1 + t1 + s2 + t2 + s3 + t3 + ... or t1 + s1 + t2 + s2 + t3 + s3 + ...
+The interleaving is s1 + t1 + s2 + t2 + s3 + t3 + ...
+or t1 + s1 + t2 + s2 + t3 + s3 + ...
 Note: a + b is the concatenation of strings a and b.
 
 ChatGPT said:
-The problem of checking whether a string s3 is formed by an interleaving of two strings s1 and s2 can be solved using dynamic programming (DP). Let's break down the logic step by step for better understanding.
+The problem of checking whether a string s3 is formed by an
+interleaving of two strings s1 and s2 can be solved using dynamic
+programming (DP). Let's break down the logic step by step for better
+understanding.
 
 Problem Explanation:
 You are given three strings s1, s2, and s3.
 
-You need to determine if s3 is formed by interleaving the characters of s1 and s2 while maintaining the relative order of characters from both s1 and s2.
+You need to determine if s3 is formed by interleaving the characters
+of s1 and s2 while maintaining the relative order of characters from
+both s1 and s2.
 
 Key Insight:
-An interleaving means that the characters from both strings s1 and s2 appear in s3 in such a way that the order of characters within s1 and s2 is preserved.
+An interleaving means that the characters from both strings s1 and
+s2 appear in s3 in such a way that the order of characters within
+s1 and s2 is preserved.
 
-The key observation is that the length of s3 must be the sum of the lengths of s1 and s2 (i.e., len(s3) = len(s1) + len(s2)).
+The key observation is that the length of s3 must be the sum of the
+lengths of s1 and s2 (i.e., len(s3) = len(s1) + len(s2)).
 
 Dynamic Programming Approach:
 We can use a 2D DP table to solve this problem:
 
-Let dp[i][j] represent whether the first i characters of s1 and the first j characters of s2 can form the first i + j characters of s3.
+Let dp[i][j] represent whether the first i characters of s1 and the
+first j characters of s2 can form the first i + j characters of s3.
 
-If dp[i][j] is true, it means that s3[0..i+j-1] can be formed by interleaving the first i characters of s1 and the first j characters of s2.
+If dp[i][j] is true, it means that s3[0..i+j-1] can be formed by
+interleaving the first i characters of s1 and the first j characters
+of s2.
 
 Steps:
 Initialize a DP Table:
@@ -96,16 +145,22 @@ Fill the DP Table:
 
 For each i and j, we check:
 
-If the current character of s1 matches the character in s3 at position i + j - 1, we check the value of dp[i-1][j] (i.e., check if we can form the first i + j - 1 characters using the first i-1 characters of s1 and the first j characters of s2).
+If the current character of s1 matches the character in s3 at position
+i + j - 1, we check the value of dp[i-1][j] (i.e., check if we can form
+the first i + j - 1 characters using the first i-1 characters of s1 and
+the first j characters of s2).
 
-Similarly, we check if the current character of s2 matches the character in s3, and if so, check the value of dp[i][j-1].
+Similarly, we check if the current character of s2 matches the character
+in s3, and if so, check the value of dp[i][j-1].
 
 Final Answer:
 
-The value of dp[len(s1)][len(s2)] will tell us whether s3 can be formed by interleaving s1 and s2.
+The value of dp[len(s1)][len(s2)] will tell us whether s3 can be formed
+by interleaving s1 and s2.
 
 Edge Case:
-If len(s3) != len(s1) + len(s2), return false immediately because it's impossible for s3 to be the interleaving of s1 and s2.
+If len(s3) != len(s1) + len(s2), return false immediately because it's
+impossible for s3 to be the interleaving of s1 and s2.
 
 Code Implementation:
 java

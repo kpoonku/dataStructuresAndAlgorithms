@@ -16,9 +16,9 @@ public class LongestPalindromeLength {
         // Step 3: Calculate the length of the longest palindrome
         boolean hasOddCount = false;
         int lengthOfLongestPalindrome = 0;
+        System.out.println(charCountMap.values());
 
         for (int count : charCountMap.values()) {
-            System.out.println(charCountMap.values());
             if (count % 2 == 1) {
                 hasOddCount = true;
             }
