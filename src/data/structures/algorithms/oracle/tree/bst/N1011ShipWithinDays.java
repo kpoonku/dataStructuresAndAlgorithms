@@ -1,6 +1,19 @@
 package data.structures.algorithms.oracle.tree.bst;
 
 public class N1011ShipWithinDays {
+    public static void main(String[] args) {
+        N1011ShipWithinDays obj = new N1011ShipWithinDays();
+
+        int[] weights1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        System.out.println(obj.shipWithinDays(weights1, 5)); // Output: 15
+
+        int[] weights2 = {3, 2, 2, 4, 1, 4};
+        System.out.println(obj.shipWithinDays(weights2, 3)); // Output: 6
+
+        int[] weights3 = {1, 2, 3, 1, 1};
+        System.out.println(obj.shipWithinDays(weights3, 4)); // Output: 3
+    }
+
     public int shipWithinDays(int[] weights, int days) {
         int left = 0, right = 0;
 

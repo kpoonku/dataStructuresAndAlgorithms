@@ -20,7 +20,8 @@ public class InvertATree {
         inorderTraversal(root.right);
     }
     public static void main(String[] args) {
-        Node<Integer> root = BinaryTree.buildBinaryTree(Arrays.asList("1", "2", "3", "x", "x", "4", "x", "x", "5", "6", "7", "x", "x", "8", "x", "x", "9", "10"), new int[]{0});
+        Node<Integer> root = BinaryTree.buildBinaryTree(Arrays.asList("1", "2", "3", "x", "x",
+                "4", "x", "x", "5", "6", "7", "x", "x", "8", "x", "x", "9", "10"), new int[]{0});
         inorderTraversal(root);
         System.out.println();
         BinaryTree.preOrderTraversal(root);

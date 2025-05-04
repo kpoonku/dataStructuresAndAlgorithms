@@ -33,6 +33,7 @@ public class BinaryTree {
     }
 
     public static void inOrderTraversal(Node<Integer> root) {
+        //Left, Node/Root, Right
         if (root != null) {
             inOrderTraversal(root.left);
             System.out.print(" " + root.value);

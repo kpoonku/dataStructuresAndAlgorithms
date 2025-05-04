@@ -50,8 +50,8 @@ public class ConstructBinaryTreeRecursive {
 
     public static void main(String[] args) {
         data.structures.algorithms.oracle.tree.Node<Integer> root = BinaryTree.buildBinaryTree(Arrays.asList("1", "2", "3", "x", "x", "4", "x", "x", "5", "6", "7", "x", "x", "8", "x", "x", "9", "10", "11", "12"), new int[]{0});
-        List<Integer> inOrderList = ConstructBinaryTree.inOrderTraversal(root, new ArrayList<>());
-        List<Integer> preOrderList = ConstructBinaryTree.preOrderTraversal(root, new ArrayList<>());
+        List<Integer> inOrderList = N105ConstructBinaryTree.inOrderTraversal(root, new ArrayList<>());
+        List<Integer> preOrderList = N105ConstructBinaryTree.preOrderTraversal(root, new ArrayList<>());
         System.out.println("InOrder : " + inOrderList.toString());
         System.out.println("PreOrder : " + preOrderList.toString());
         Node<Integer> res = constructBinaryTree(preOrderList, inOrderList);
