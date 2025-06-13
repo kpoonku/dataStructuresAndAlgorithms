@@ -6,7 +6,8 @@ public class N399CalcEquation {
     // Test method
     public static void main(String[] args) {
         N399CalcEquation sol = new N399CalcEquation();
-        List<List<String>> equations = Arrays.asList(Arrays.asList("a", "b"), Arrays.asList("b", "c"));
+        List<List<String>> equations = Arrays.asList(Arrays.asList("a", "b"),
+                Arrays.asList("b", "c"));
         double[] values = {2.0, 3.0};
         List<List<String>> queries = Arrays.asList(Arrays.asList("a", "c"),
                 Arrays.asList("b", "a"), Arrays.asList("a", "e"),
@@ -16,7 +17,9 @@ public class N399CalcEquation {
         // Output: [6.0, 0.5, -1.0, 1.0, -1.0]
     }
 
-    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+    public double[] calcEquation(List<List<String>> equations,
+                                 double[] values,
+                                 List<List<String>> queries) {
         double[] results = new double[queries.size()];
         int i = 0;
         Map<String, Map<String, Double>> graph = new HashMap<>();
@@ -47,7 +50,9 @@ public class N399CalcEquation {
         return results;
     }
 
-    private double dfsUsingStack(Map<String, Map<String, Double>> graph, String src, String dest) {
+    private double dfsUsingStack(Map<String, Map<String, Double>> graph,
+                                 String src,
+                                 String dest) {
         Stack<Pair> stack = new Stack<>();
         Set<String> visited = new HashSet<>();
         stack.push(new Pair(src, 1.0));
@@ -88,11 +93,11 @@ must find the answer for Cj / Dj = ?.
 
 Return the answers to all queries. If a single answer cannot be determined, return -1.0.
 
-Note: The input is always valid. You may assume that evaluating the queries will not result in division
-by zero and that there is no contradiction.
+Note: The input is always valid. You may assume that evaluating the queries will not result
+in division by zero and that there is no contradiction.
 
-Note: The variables that do not occur in the list of equations are undefined, so the answer cannot be
-determined for them.
+Note: The variables that do not occur in the list of equations are undefined,
+so the answer cannot be determined for them.
 
 Example 1:
 Input:
@@ -108,11 +113,15 @@ return: [6.0, 0.5, -1.0, 1.0, -1.0 ]
 note: x is undefined => -1.0
 
 Example 2:
-Input: equations = [["a","b"],["b","c"],["bc","cd"]], values = [1.5,2.5,5.0], queries = [["a","c"],["c","b"],["bc","cd"],["cd","bc"]]
+Input: equations = [["a","b"],["b","c"],["bc","cd"]],
+values = [1.5,2.5,5.0],
+queries = [["a","c"],["c","b"],["bc","cd"],["cd","bc"]]
 Output: [3.75000,0.40000,5.00000,0.20000]
 
 Example 3:
-Input: equations = [["a","b"]], values = [0.5], queries = [["a","b"],["b","a"],["a","c"],["x","y"]]
+Input: equations = [["a","b"]],
+values = [0.5],
+queries = [["a","b"],["b","a"],["a","c"],["x","y"]]
 Output: [0.50000,2.00000,-1.00000,-1.00000]
 
 Constraints:
@@ -127,7 +136,8 @@ queries[i].length == 2
 Ai, Bi, Cj, Dj consist of lower case English letters and digits.
 */
 /*
-Absolutely! Let's break this logic down **step by step** using a **real-world analogy** so it makes sense for any human brain 😊
+Absolutely! Let's break this logic down **step by step** using a **real-world analogy**
+so it makes sense for any human brain 😊
 
 ---
 
@@ -148,7 +158,8 @@ And someone asks you questions like:
 
 ### ✅ What Are We Doing?
 
-We are solving **math puzzles** where some equations are known and you want to **connect the dots** to find the answer to others.
+We are solving **math puzzles** where some equations are known and you want to
+**connect the dots** to find the answer to others.
 
 ---
 
@@ -190,7 +201,8 @@ b / c = 3.0  → b —(3.0)→ c
               c —(1/3.0)→ b
 ```
 
-We build this map (graph) with **both directions**, because you might need to go from `c → a` or `a → c`.
+We build this map (graph) with **both directions**,
+because you might need to go from `c → a` or `a → c`.
 
 ---
 
@@ -231,14 +243,9 @@ Easy:
 
 We just multiplied along the path!
 
----
-
 ### 🛠️ So the Code Is Just Doing This:
 - Build the graph of relationships
 - For each question, walk the graph and multiply
 - If a path doesn’t exist → return -1.0
 
----
-
-Would you like me to show this visually or build a mini version in plain Java or Python with prints that say what’s happening? We can do it super simply!
  */

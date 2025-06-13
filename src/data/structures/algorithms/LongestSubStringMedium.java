@@ -4,7 +4,8 @@ import java.util.*;
 
 /**
  * 3. Longest Substring Without Repeating Characters
- * Given a string, find the length of the longest substring without repeating characters.
+ * Given a string, find the length of the longest
+ * substring without repeating characters.
  * <p>
  * Example 1:
  * <p>
@@ -21,7 +22,8 @@ import java.util.*;
  * Input: "pwwkew"
  * Output: 3
  * Explanation: The answer is "wke", with the length of 3.
- * Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ * Note that the answer must be a substring,
+ * "pwke" is a subsequence and not a substring.
  */
 public class LongestSubStringMedium {
     static final int MAX_CHAR = 26;

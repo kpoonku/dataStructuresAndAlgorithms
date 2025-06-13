@@ -10,7 +10,8 @@ public class ConstructBinaryTreeRecursive {
 
     private static Node<Integer> buildTreeRecursive(List<Integer> preorder, Map<Integer, Integer> inorderIndexMap,
                                                     int preorderStart, int inorderStart, int size) {
-        System.out.println("1 : preorderStart : " + preorderStart + " , inorderStart : " + inorderStart + " , size : " + size);
+        System.out.println("1 : preorderStart : " + preorderStart +
+                " , inorderStart : " + inorderStart + " , size : " + size);
         if (size <= 0) {
             return null;
         }
@@ -20,11 +21,13 @@ public class ConstructBinaryTreeRecursive {
 
         System.out.println(" preorderStart :: " + (preorderStart + 1) + " , inorderStart :: "
                 + inorderStart + " , leftSize ::  " + leftSize);
-        Node<Integer> left = buildTreeRecursive(preorder, inorderIndexMap, preorderStart + 1, inorderStart,
+        Node<Integer> left = buildTreeRecursive(preorder, inorderIndexMap,
+                preorderStart + 1, inorderStart,
                 leftSize);
         System.out.println(" 2 preorderStart :: " + (preorderStart + 1 + leftSize) +
                 " , inorderIndex ::" + (inorderIndex + 1) + " , leftSize :: " + (size - 1 - leftSize));
-        Node<Integer> right = buildTreeRecursive(preorder, inorderIndexMap, preorderStart + 1 + leftSize,
+        Node<Integer> right = buildTreeRecursive(preorder, inorderIndexMap,
+                preorderStart + 1 + leftSize,
                 inorderIndex + 1, size - 1 - leftSize);
 
         return new Node<Integer>(rootValue, left, right);
@@ -35,7 +38,8 @@ public class ConstructBinaryTreeRecursive {
         for (int i = 0; i < inorder.size(); ++i) {
             inorderIndexMap.put(inorder.get(i), i);
         }
-        return buildTreeRecursive(preorder, inorderIndexMap, 0, 0, inorder.size());
+        return buildTreeRecursive(preorder, inorderIndexMap,
+                0, 0, inorder.size());
     }
 
     public static <T> void formatTree(Node<T> node, List<String> out) {

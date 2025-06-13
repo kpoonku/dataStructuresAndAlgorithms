@@ -120,7 +120,7 @@ public class N2095DeleteMiddleNode {
         public int val;
         public ListNode next;
 
-        ListNode(int val) {
+        public ListNode(int val) {
             this.val = val;
         }
     }

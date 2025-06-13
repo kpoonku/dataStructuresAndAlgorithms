@@ -18,9 +18,9 @@ public class N1161MaxLevelSum {
         queue.offer(root);
         int levelSum = 0;
         while (!queue.isEmpty()) {
-            int levelSize = queue.size();
+            int queueSize = queue.size();
             levelSum = 0;
-            for (int i = 0; i < levelSize; i++) {
+            for (int i = 0; i < queueSize; i++) {
                 Node<Integer> node = queue.poll();
                 if (node == null) {
                     continue;
@@ -52,13 +52,9 @@ public class N1161MaxLevelSum {
 
 /*
 Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so on.
-
 Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
 
-
-
 Example 1:
-
 
 Input: root = [1,7,0,7,-8,null,null]
 Output: 2

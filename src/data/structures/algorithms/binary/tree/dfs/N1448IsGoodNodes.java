@@ -38,13 +38,14 @@ public class N1448IsGoodNodes {
         int leftGood = dfs(node.left, newMax);
         int rightGood = dfs(node.right, newMax);
 
-        // Total good nodes is the sum of the current good node and the good nodes from the left and right subtrees
+        // Total good nodes is the sum of the current good node and
+        // the good nodes from the left and right subtrees
         return isGood + leftGood + rightGood;
     }
 }
 /*
-Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with
-a value greater than X.
+Given a binary tree root, a node X in the tree is named good if in the path from root to X
+there are no nodes with a value greater than X.
 
 Return the number of good nodes in the binary tree.
 
@@ -57,8 +58,8 @@ Root Node (3) is always a good node.
 Node 4 -> (3,4) is the maximum value in the path starting from the root.
 Node 5 -> (3,4,5) is the maximum value in the path
 Node 3 -> (3,1,3) is the maximum value in the path.
-Example 2:
 
+Example 2:
 Input: root = [3,3,null,4,2]
 Output: 3
 Explanation: Node 2 -> (3, 3, 2) is not good, because "3" is higher than it.

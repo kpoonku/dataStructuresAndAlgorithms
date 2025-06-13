@@ -15,10 +15,12 @@ public class TransactionLogsExampleAmazon {
             String receiver = parts[1];
 
             // Use compute for faster map operations
-            transactionCount.compute(sender, (k, v) -> v == null ? 1 : v + 1);
+            transactionCount
+                    .compute(sender, (k, v) -> v == null ? 1 : v + 1);
 
             if (!sender.equals(receiver)) {
-                transactionCount.compute(receiver, (k, v) -> v == null ? 1 : v + 1);
+                transactionCount
+                        .compute(receiver, (k, v) -> v == null ? 1 : v + 1);
             }
         }
 

@@ -19,7 +19,9 @@ public class N437PathSumIII {
     }
 
     // DFS helper function
-    private static void dfs(Node<Integer> node, long currentSum, int targetSum) {
+    private static void dfs(Node<Integer> node,
+                            long currentSum,
+                            int targetSum) {
         if (node == null) {
             return;
         }
@@ -33,7 +35,8 @@ public class N437PathSumIII {
         }
 
         // Store the current sum in the hash map (prefixSumCount)
-        prefixSumCount.put(currentSum, prefixSumCount.getOrDefault(currentSum, 0) + 1);
+        prefixSumCount.put(currentSum,
+                prefixSumCount.getOrDefault(currentSum, 0) + 1);
 
         // Explore the left and right subtrees recursively
         dfs(node.left, currentSum, targetSum);

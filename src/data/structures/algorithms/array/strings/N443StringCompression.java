@@ -17,6 +17,7 @@ public class N443StringCompression {
                 }
             }
         }
+        System.out.println(new String(chars));
         return write;
     }
 

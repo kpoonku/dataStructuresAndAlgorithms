@@ -19,8 +19,8 @@ public class N994OrangesRotting {
                 }
             }
         }
-
-        int[][] directions = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // down, up, right, left
+        // down, up, right, left
+        int[][] directions = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
         int minutesElapsed = 0; // Counter for minutes
 
@@ -46,7 +46,8 @@ public class N994OrangesRotting {
             }
         }
 
-        // If there are still fresh oranges, return -1, else return the elapsed minutes
+        // If there are still fresh oranges,
+        // return -1, else return the elapsed minutes
         return freshOranges == 0 ? minutesElapsed : -1;
     }
 

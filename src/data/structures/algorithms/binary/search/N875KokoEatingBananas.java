@@ -84,7 +84,9 @@ Great question! Both expressions are used to calculate the **middle index** in b
 This is the **simplest and most common** form, but it can be risky.
 
 ### ⚠️ Problem with `(left + right) / 2`:
-When `left` and `right` are **very large integers**, adding them together (`left + right`) can **overflow** the maximum value an `int` can hold in Java (which is 2³¹ - 1 = 2,147,483,647).
+When `left` and `right` are **very large integers**, adding them together
+(`left + right`) can **overflow** the maximum value an `int`
+can hold in Java (which is 2³¹ - 1 = 2,147,483,647).
 
 ---
 
@@ -94,7 +96,8 @@ int mid = left + (right - left) / 2;
 ```
 
 #### Why it's better:
-- `(right - left)` will **never overflow**, because it's the size of the range (always ≤ total array size).
+- `(right - left)` will **never overflow**, because it's the size of the range
+(always ≤ total array size).
 - Adding it to `left` is safe unless both are extremely large, which is rare in practice.
 
 ---
@@ -142,7 +145,8 @@ Each hour:
 ---
 
 ## 🎯 Goal:
-> Find the **smallest** value of `k` (eating speed per hour) so that **Koko finishes in `h` hours or less**.
+> Find the **smallest** value of `k` (eating speed per hour) so that **Koko finishes in `h`
+ hours or less**.
 
 ---
 
@@ -151,7 +155,8 @@ Each hour:
 We can use **Binary Search**! Here's why:
 
 - The **minimum speed** Koko can eat is `1` banana/hour.
-- The **maximum speed** she ever needs is the **biggest pile**, because eating faster won’t help (you can only eat one pile per hour).
+- The **maximum speed** she ever needs is the **biggest pile**, because eating faster won’t
+help (you can only eat one pile per hour).
 - So we **search between 1 and max(piles)** to find the **smallest `k`** that works.
 
 ---

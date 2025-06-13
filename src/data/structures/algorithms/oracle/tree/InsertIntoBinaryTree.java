@@ -29,7 +29,9 @@ public class InsertIntoBinaryTree {
     }
 
     public static void main(String[] args) {
-        Node<Integer> root = BinaryTree.buildBinaryTree(Arrays.asList("1", "2", "3", "x", "x", "4", "x", "x", "5", "6", "7", "x", "x", "8", "x", "x", "9", "10"), new int[]{0});
+        Node<Integer> root = BinaryTree.buildBinaryTree(
+                Arrays.asList("1", "2", "3", "x", "x", "4", "x", "x", "5", "6", "7",
+                        "x", "x", "8", "x", "x", "9", "10"), new int[]{0});
         BinaryTree.inOrderTraversal(root, "  ");
         System.out.println("New Line");
         //int treeHeight = CheckForBalancedTree.checkForBalancedTree(root);

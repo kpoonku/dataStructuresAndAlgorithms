@@ -5,7 +5,8 @@ import java.util.List;
 
 public class N345ReverseVowels {
     public static String reverseVowels(String s) {
-        List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
+        List<Character> vowels = Arrays.asList
+                ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
         char[] c = s.toCharArray();
         int left = 0, right = s.length() - 1;
         while (left < right) {

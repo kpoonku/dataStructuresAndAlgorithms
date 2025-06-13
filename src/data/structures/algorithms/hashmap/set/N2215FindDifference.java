@@ -1,22 +1,13 @@
 package data.structures.algorithms.hashmap.set;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class N2215FindDifference {
     public static List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
         List<List<Integer>> result = new ArrayList<>();
-        Set<Integer> set1 = new HashSet<>();
-        Set<Integer> set2 = new HashSet<>();
-
-        for(int num: nums1) {
-            set1.add(num);
-        }
-        for(int num: nums2) {
-            set2.add(num);
-        }
+        Set<Integer> set1 = Arrays.stream(nums1).boxed().collect(Collectors.toSet());
+        Set<Integer> set2 = Arrays.stream(nums2).boxed().collect(Collectors.toSet());
 
         System.out.println("Set 1 : " + set1);
         System.out.println("Set 2 : " + set2);

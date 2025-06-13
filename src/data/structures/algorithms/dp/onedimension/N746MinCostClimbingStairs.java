@@ -20,7 +20,7 @@ public class N746MinCostClimbingStairs {
     public static void main(String[] args) {
         int[] cost = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
         N746MinCostClimbingStairs sol = new N746MinCostClimbingStairs();
-        System.out.println("result : " + sol.minCostClimbingStairs(cost));
+        //System.out.println("result : " + sol.minCostClimbingStairs(cost));
         cost = new int[] {10, 15, 20};
         System.out.println("result : " + sol.minCostClimbingStairs(cost));
     }

@@ -35,7 +35,8 @@ public class N199RightSideView {
     }
 
     public static void main(String[] args) {
-        Node<Integer> root = BinaryTree.buildBinaryTree(Arrays.asList("5", "3", "2", "1", "x", "x"), new int[]{0});
+        Node<Integer> root = BinaryTree.buildBinaryTree
+                (Arrays.asList("5", "3", "2", "1", "x", "x"), new int[]{0});
         BinaryTree.inOrderTraversal(root, "  ");
         List<Integer> result = rightSideView(root);
         System.out.println(result);

@@ -8,15 +8,18 @@ import java.util.Set;
 public class N1926NearestExit {
     public static void main(String[] args) {
         N1926NearestExit sol = new N1926NearestExit();
-        char[][] maze = {{'+', '+', '.', '+'}, {'.', '.', '.', '+'}, {'+', '+', '+', '.'}};
-        System.out.println("Minimal Steps : " + sol.nearestExit(maze, new int[]{1, 2}));
+        char[][] maze = {{'+', '+', '.', '+'}, {'.', '.', '.', '+'},
+                {'+', '+', '+', '.'}};
+        System.out.println("Minimal Steps : " +
+                sol.nearestExit(maze, new int[]{1, 2}));
     }
 
     public int nearestExit(char[][] maze, int[] entrance) {
         int rowLength = maze.length;
         int colLength = maze[0].length;
 
-        int[][] directions = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // down, up, right, left
+        // down, up, right, left
+        int[][] directions = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         Set<String> visited = new HashSet<>();
         int sRow = entrance[0];
         int sCol = entrance[1];

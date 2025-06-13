@@ -19,8 +19,12 @@ public class N605CanPlaceFlowers {
     }
 
     public static void main(String[] args) {
-        System.out.println("can Place Flowers : " + canPlaceFlowers(new int[]{1, 0, 1, 0, 0}, 1));
-        System.out.println("can Place Flowers : " + canPlaceFlowers(new int[]{1, 0, 0, 0, 1}, 2));
+        System.out.println
+                ("can Place Flowers : " +
+                        canPlaceFlowers(new int[]{1, 0, 1, 0, 0}, 1));
+        System.out.println
+                ("can Place Flowers : " +
+                        canPlaceFlowers(new int[]{1, 0, 0, 0, 1}, 2));
     }
 }
 

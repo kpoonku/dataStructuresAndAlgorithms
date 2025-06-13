@@ -6,7 +6,8 @@ public class ReverseNumber {
         System.out.println(Integer.MIN_VALUE);
         System.out.println(Integer.MAX_VALUE);
         while (numberToBeReversed != 0) {
-            if (result < Integer.MIN_VALUE / 10 || result > Integer.MAX_VALUE / 10) {
+            if (result < Integer.MIN_VALUE / 10 ||
+                    result > Integer.MAX_VALUE / 10) {
                 return 0;
             }
             int modValue = numberToBeReversed % 10;
